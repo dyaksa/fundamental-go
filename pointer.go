@@ -8,6 +8,10 @@ type Address struct {
 	Province string
 }
 
+func ChangeCountryToIndonesia(address *Address) {
+	address.City = "Indonesia"
+}
+
 func main() {
 	address1 := Address{"Demak", "Dyaksa", "Jawa Tengah"}
 	address2 := &address1
@@ -28,5 +32,9 @@ func main() {
 	alamat1.City = "Purwokerto"
 
 	fmt.Println(alamat1)
+
+	almt := Address{"Salatiga", "Dyaksa", "Jawa Tengah"}
+	ChangeCountryToIndonesia(&almt)
+	fmt.Println(almt)
 
 }
