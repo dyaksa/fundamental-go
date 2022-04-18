@@ -2,3 +2,5 @@ github.com/dyaksa/go-say-hello v1.0.0 h1:jUVtfEr3/a9Gc7hR6yiEaiFEBqnumOiMvz7A6NG
 github.com/dyaksa/go-say-hello v1.0.0/go.mod h1:lhp3awK8c417MT9z8mUpAURFbW/OiV2o2KVNyDBud08=
 github.com/dyaksa/go-say-hello v1.0.1 h1:ReyAsGjqnLVpI+dTx2Dj8ar7xCx8/b+rnnfZ+inHxvs=
 github.com/dyaksa/go-say-hello v1.0.1/go.mod h1:lhp3awK8c417MT9z8mUpAURFbW/OiV2o2KVNyDBud08=
+github.com/dyaksa/go-say-hello/v2 v2.0.0 h1:Z4mNy9gsBOPeLwld3yv/M84Tjw0s18Ak9aMKZLmf0mo=
+github.com/dyaksa/go-say-hello/v2 v2.0.0/go.mod h1:qIzqMq+GFsO9IirRCqlet7daM0Kes+dzvu4iaK2wg/k=
