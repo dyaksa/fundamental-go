@@ -55,3 +55,58 @@ func TestRwMutext(t *testing.T) {
 	}
 	time.Sleep(5 * time.Second)
 }
+
+type UserBalance struct {
+	sync.Mutex
+	Name    string
+	Balance int
+}
+
+func (user *UserBalance) Lock() {
+	user.Mutex.Lock()
+}
+
+func (user *UserBalance) Unlock() {
+	user.Mutex.Unlock()
+}
+
+func (user *UserBalance) Change(amount int) {
+	user.Balance = user.Balance + amount
+}
+
+func Transer(user1 *UserBalance, user2 *UserBalance, amount int) {
+	user1.Lock()
+	fmt.Println("lock user 1 ", user1.Name)
+	user1.Change(-amount)
+
+	time.Sleep(1 * time.Second)
+
+	user2.Lock()
+	fmt.Println("lock user 2 ", user2.Name)
+	user2.Change(amount)
+
+	time.Sleep(1 * time.Second)
+
+	user1.Unlock()
+	user2.Unlock()
+}
+
+func TestDeadlock(t *testing.T) {
+	user1 := UserBalance{
+		Name:    "Dyaksa",
+		Balance: 1000000,
+	}
+
+	user2 := UserBalance{
+		Name:    "Eko",
+		Balance: 1000000,
+	}
+
+	go Transer(&user1, &user2, 100000)
+	go Transer(&user2, &user1, 100000)
+
+	time.Sleep(5 * time.Second)
+
+	fmt.Println("user 1: ", user1.Balance)
+	fmt.Println("user 2: ", user2.Balance)
+}
