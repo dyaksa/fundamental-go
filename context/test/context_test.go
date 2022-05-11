@@ -95,3 +95,21 @@ func TestWithTimeout(t *testing.T) {
 	time.Sleep(7 * time.Second)
 	fmt.Println("Total goroutines:", runtime.NumGoroutine())
 }
+
+func TestWithDeadLine(t *testing.T) {
+	fmt.Println("Total goroutines:", runtime.NumGoroutine())
+
+	parent := context.Background()
+	ctx, cancel := context.WithDeadline(parent, time.Now().Add(5*time.Second))
+
+	defer cancel()
+
+	dest := CreateCounter(ctx)
+
+	for n := range dest {
+		fmt.Println("counter ", n)
+	}
+
+	time.Sleep(2 * time.Second)
+	fmt.Println("Total goroutines:", runtime.NumGoroutine())
+}
